@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #2F4F4F;
+    color: white;
+}
+
+h1 {
+    margin-top: 50px;
+    text-align: center;
+}
+
+input {
+    height: 40px;
+    width: 250px;
+}
+
+button {
+    height: 40px;
+    width: 250px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    font-weight: 600;
+    font-size: 20px;
+    border: none;
+}
+
+a {
+    padding: 10px;
+    height: 30px;
+    width: 125px;
+}
+
+.cadastro-esqueciSenha {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
