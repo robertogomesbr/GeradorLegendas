@@ -4,14 +4,30 @@
     box-sizing: border-box;
 }
 
-body {
+body, html {
     background-color: #2F4F4F;
     color: white;
+    height: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    margin-top: 60px;
+    text-align: center;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 h1 {
-    margin-top: 50px;
-    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 35px;
 }
 
 input {
@@ -20,24 +36,58 @@ input {
 }
 
 button {
-    height: 40px;
+    height: 45px;
     width: 250px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-
     font-weight: 600;
-    font-size: 20px;
+    font-size: 22px;
     border: none;
+    align-items: center;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #D9D9D9;
+}
+
+p {
+    margin: 0px;
 }
 
 a {
-    padding: 10px;
-    height: 30px;
-    width: 125px;
+    text-decoration: none;
+    color: #000;
 }
 
-.cadastro-esqueciSenha {
+a:hover {
+    background-color: #D9D9D9;
+}
+
+.div-login {
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.form-login {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.link-cad-senha {
+    display: flex;
+    justify-content: center;
+    gap: 105pt;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.links {
+    width: 100px;
+    height: 20px;
+
+    color: #000000;
+    background-color: #ffffff;
+    font-size: 14px;
 }
