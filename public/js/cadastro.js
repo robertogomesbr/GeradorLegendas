@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 alert("Cadastro realizado com sucesso!");
-                window.location.href = "home.html";
+                window.location.href = "./private/home.html";
             } catch (err) {
                 console.error(err);
                 alert("Falha na conexão do servidor.");
