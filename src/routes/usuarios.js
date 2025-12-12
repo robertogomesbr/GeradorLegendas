@@ -12,4 +12,9 @@ router.get('/me', usuariosControllers.auth, async (req, res) => {
 
 router.get('/logout', usuariosControllers.logout);
 
+router.get('/me-dados', usuariosControllers.auth, usuariosControllers.pegarDadosUsuario);
+
+router.post('/alterar', usuariosControllers.auth, usuariosControllers.alterarDados);
+
+
 module.exports = router;
