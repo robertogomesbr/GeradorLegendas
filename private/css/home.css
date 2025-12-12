@@ -88,6 +88,7 @@ p {
 }
 
 .logout {
+    margin-top: auto;
     background-color: #C98282;
     color: #FFFFFF;
 }

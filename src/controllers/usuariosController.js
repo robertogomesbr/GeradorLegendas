@@ -77,13 +77,16 @@ exports.login = async (req, res) => {
 exports.logout = (req, res) => {
     req.session.destroy(() => {
         res.clearCookie("connect.sid");
-        res.status(200).json({ msg: "Deslogado com sucesso" });
+        res.redirect('/');
     });
 };
 
 exports.auth = (req, res, next) => {
     if (!req.session.userId) {
-        return res.status(401).json({ erro: "Acesso não autorizado" });
+        return res.send(`<script>
+            alert("Você precisa estar logado!");
+            window.location.href = "/index.html";
+        </script>`);
     }
     next();
 };
