@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const app = express();
 const usuariosRoutes = require('./routes/usuarios');
 const path = require('path');
@@ -15,6 +16,13 @@ sequelize.sync().then(() => {
 
 app.use(express.json());
 app.use(usuariosRoutes);
+
+app.use(session({
+    secret: 'dsfsf@#$43%hjgf!la32',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 2 * 1000 * 60 * 60 }
+}));
 
 app.use(express.static(path.join(__dirname, '../public' )));
 
