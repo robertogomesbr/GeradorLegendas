@@ -13,7 +13,6 @@ body, html {
     flex-direction: column;
 }
 
-/* main ocupa todo espaço entre header e footer */
 main {
     flex: 1;
     display: flex;
@@ -26,13 +25,11 @@ h1 {
     margin-bottom: 35px;
 }
 
-/* inputs */
 input {
     height: 40px;
     width: 250px;
 }
 
-/* botão */
 button {
     height: 45px;
     width: 250px;
@@ -42,28 +39,23 @@ button {
     cursor: pointer;
 }
 
-/* efeito hover do botão */
 button:hover {
     background-color: #D9D9D9;
 }
 
-/* parágrafos dentro do form */
 p {
     margin: 0;
 }
 
-/* estilo padrão de link */
 a {
     text-decoration: none;
     color: #000;
 }
 
-/* efeito hover do link */
 a:hover {
     background-color: #D9D9D9;
 }
 
-/* box do cadastro */
 .div-cadastro {
     display: flex;
     flex-direction: column;
@@ -71,20 +63,17 @@ a:hover {
     align-items: center;
 }
 
-/* formulário */
 .form-cadastro {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-/* footer */
 footer {
     display: flex;
     padding: 10px;
 }
 
-/* link “Voltar” no canto inferior esquerdo */
 footer a {
     display: inline-block;
     padding: 10px 15px;
