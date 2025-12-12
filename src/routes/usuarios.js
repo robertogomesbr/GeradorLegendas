@@ -6,4 +6,10 @@ router.post('/login', usuariosControllers.login);
 
 router.post('/cadastrar', usuariosControllers.cadastrar);
 
+router.get('/me', usuariosControllers.auth, async (req, res) => {
+    res.json({ msg: "Você está autenticado!", id: req.session.userId });
+});
+
+router.get('/logout', usuariosControllers.logout);
+
 module.exports = router;

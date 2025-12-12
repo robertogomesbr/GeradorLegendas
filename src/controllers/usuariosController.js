@@ -57,6 +57,8 @@ exports.login = async (req, res) => {
             return res.status(400).json({ erro: "Senha incorreta" });
         }
 
+        req.session.userId = usuarioExistente.id;
+
         return res.status(200).json({
             msg: "Login realizado",
             usuario: {
@@ -71,3 +73,17 @@ exports.login = async (req, res) => {
         return res.status(500).json({ erro: "Erro no servidor" });
     }
 }
+
+exports.logout = (req, res) => {
+    req.session.destroy(() => {
+        res.clearCookie("connect.sid");
+        res.status(200).json({ msg: "Deslogado com sucesso" });
+    });
+};
+
+exports.auth = (req, res, next) => {
+    if (!req.session.userId) {
+        return res.status(401).json({ erro: "Acesso não autorizado" });
+    }
+    next();
+};

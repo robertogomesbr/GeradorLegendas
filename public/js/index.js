@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 localStorage.setItem("usuario", JSON.stringify(dados.usuario));
-                window.location.href = "./private/home.html";
+                window.location.href = "/private/home.html";
             } catch (err) {
                 console.error(err);
                 alert("Falha na conexão do servidor.");
