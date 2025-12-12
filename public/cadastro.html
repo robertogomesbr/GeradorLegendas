@@ -12,13 +12,13 @@
     <main>
         <div class="div-cadastro">
             <h1>CADASTRO</h1>
-            <form class="form-cadastro" action="/cadastro">
+            <form id="registerForm" class="form-cadastro" action="/cadastro">
                 <p>Usuário</p>
-                <input type="text" title="Informe um nome de usuário" required>
+                <input id="usuarioCadastro" name="usuarioCadastro" type="text" title="Informe um nome de usuário" required>
                 <p>Email</p>
-                <input type="email" title="Informe um email" required>
+                <input id="emailCadastro" name="emailCadastro" type="email" title="Informe um email" required>
                 <p>Senha</p>
-                <input type="password" title="Informe uma senha" required>
+                <input id="senhaCadastro" name="senhaCadastro" type="password" title="Informe uma senha" required>
                 <br>
                 <button title="Fazer cadastro">Cadastrar</button>
             </form>

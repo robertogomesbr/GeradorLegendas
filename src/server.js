@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const usuariosRoutes = require('./routes/usuarios');
 const path = require('path');
 const PORT = 3000;
 
@@ -13,6 +14,7 @@ sequelize.sync().then(() => {
 });
 
 app.use(express.json());
+app.use(usuariosRoutes);
 
 app.use(express.static(path.join(__dirname, '../public' )));
 

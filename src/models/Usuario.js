@@ -3,7 +3,7 @@ const sequelize = require('../config/database');
 
 const Usuario = sequelize.define('Usuario', {
 
-    nome: {
+    usuario: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
