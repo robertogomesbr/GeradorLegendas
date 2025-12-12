@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Legendas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/alterarDados.css">
+</head>
+<body>
+
+    <main>
+        <div class="div-alterar-dados">
+            <h1>ALTERAR DADOS</h1>
+            <form class="form-alterar-dados" action="/alterar" method="post">
+                <p>Usuário</p>
+                <input name="usuario" type="text" title="Alterar nome de usuário" required>
+                <p>Email</p>
+                <input name="email2" type="email" title="Alterar email" required>
+                <p>Senha</p>
+                <input name="senha" type="password" title="Alterar senha" required>
+                <br>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <a href="./home.html" class="links">Voltar</a>
+        <button id="btnSalvar" title="Salvar alterações">Salvar</button>
+    </footer>
+
+    <script src="./js/alterarDados.js"></script>
+</body>
+</html>

@@ -71,6 +71,8 @@ a:hover {
 
 footer {
     display: flex;
+    justify-content: space-between;
+    gap: 500px;
     padding: 10px;
 }
 

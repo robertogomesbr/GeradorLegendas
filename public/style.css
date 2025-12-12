@@ -13,11 +13,6 @@ body, html {
     flex-direction: column;
 }
 
-header {
-    margin-top: 60px;
-    text-align: center;
-}
-
 main {
     flex: 1;
     display: flex;
