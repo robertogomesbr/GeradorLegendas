@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const app = express();
 const usuariosRoutes = require('./routes/usuarios');
+// const uploadsRoutes = require('./routes/uploads');
 const usuariosControllers = require('./controllers/usuariosController');
 const path = require('path');
 const PORT = 3000;
@@ -24,6 +25,7 @@ app.use(session({
 
 app.use(express.json());
 app.use(usuariosRoutes);
+// app.use(uploadsRoutes);
 
 app.use(express.static(path.join(__dirname, '../public' )));
 

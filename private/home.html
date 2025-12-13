@@ -16,7 +16,6 @@
             <label for="inputFile" class="btn-side">
                 Importar Arquivo
             </label>
-            <input id="inputFile" type="file">
             <a href="alterarDados.html" class="btn-side">Alterar Dados Pessoais</a>
             <a href="editarLegendas.html" class="btn-side">Editar Legendas</a>
             <a href="/logout" class="btn-side logout">Sair</a>
@@ -38,7 +37,11 @@
                     </svg>
                 </label>
             </div>
+            <p id="msg"></p>
         </div>
+        <form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data">
+            <input type="file" id="inputFile" name="media" accept="video/*,audio/*" hidden required>
+        </form>
     </main>
     <script src="./js/home.js"></script>
 </body>
