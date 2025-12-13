@@ -48,13 +48,13 @@ exports.login = async (req, res) => {
         const usuarioExistente = await Usuario.findOne({ where: { usuario } });
 
         if (!usuarioExistente) {
-            return res.status(400).json({ erro: "Usuário não encontrado" });
+            return res.status(400).json({ erro: "Usuário ou senha inválida" });
         }
 
         const senhaValida = bcrypt.compareSync(senha, usuarioExistente.senha);
 
         if (!senhaValida) {
-            return res.status(400).json({ erro: "Senha incorreta" });
+            return res.status(400).json({ erro: "Usuário ou senha inválida" });
         }
 
         req.session.userId = usuarioExistente.id;
