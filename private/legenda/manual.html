@@ -13,9 +13,7 @@
 <body>
     <header>
         <div class="sidebar">
-            <label for="inputFile" class="btn-side">
-                Adicionar Texto
-            </label>
+            <button class="btn-side" id="btnAdd">Adicionar Texto</button>
             <a class="btn-side">Tipo De Fonte</a>
             <a class="btn-side">Cor</a>
             <a class="btn-side">Tamanho Da Fonte</a>
@@ -28,6 +26,8 @@
 
     <main>
         <div id="playerContainer"></div>
+        <div id="legendaDisplay"></div>
+        <input type="text" id="legendaInput" placeholder="Adicione a legenda">
     </main>
     <script src="../js/legendaManual.js"></script>
 </body>
