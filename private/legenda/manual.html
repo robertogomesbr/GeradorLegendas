@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Legendas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/legendaManual.css">
+</head>
+
+<body>
+    <header>
+        <div class="sidebar">
+            <label for="inputFile" class="btn-side">
+                Adicionar Texto
+            </label>
+            <a class="btn-side">Tipo De Fonte</a>
+            <a class="btn-side">Cor</a>
+            <a class="btn-side">Tamanho Da Fonte</a>
+            <a class="btn-side">Cor De Fundo</a>
+            <a class="btn-side">Transparência De Fundo</a>
+            <a href="/logout" class="btn-side cancelar">Cancelar</a>
+            <button class="btn-side salvar" title="Salvar alterações">Salvar</button>
+        </div>
+    </header>
+
+    <main>
+        <div id="playerContainer"></div>
+    </main>
+    <script src="../js/legendaManual.js"></script>
+</body>
+
+</html>
