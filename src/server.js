@@ -1,3 +1,7 @@
+require('dotenv').config({
+    path: require('path').resolve(__dirname, '../.env')
+});
+
 const express = require('express');
 const session = require('express-session');
 const app = express();
@@ -6,7 +10,7 @@ const uploadsRoutes = require('./routes/uploads');
 const legendasRoutes = require('./routes/legendas');
 const usuariosControllers = require('./controllers/usuariosController');
 const path = require('path');
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 const Usuario = require('./models/Usuario');
 const sequelize = require('./config/database');
