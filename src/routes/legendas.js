@@ -17,12 +17,12 @@ router.get('/legenda/manual', usuariosController.auth, (req, res) => {
 
 });
 
-/*router.post('/legendas', usuariosController.auth, legendasController.store);
+router.post('/legendas', usuariosController.auth, legendasController.store);
 
 router.get('/legendas/:mediaId', usuariosController.auth, legendasController.index);
 
 router.put('/legendas/:id', usuariosController.auth, legendasController.update);
 
-router.delete('/legendas/:id', usuariosController.auth, legendasController.destroy);*/
+router.delete('/legendas/:id', usuariosController.auth, legendasController.destroy);
 
 module.exports = router;
