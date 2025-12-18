@@ -34,7 +34,10 @@ const LegendaEstilo = sequelize.define('LegendaEstilo', {
         allowNull: false
     }
 }, {
-    tableName: 'legenda_estilo'
+    tableName: 'legenda_estilo',
+    indexes: [
+        { fields: ['media_id'] }
+    ]
 });
 
 module.exports = LegendaEstilo;

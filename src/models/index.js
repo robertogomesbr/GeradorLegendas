@@ -5,7 +5,8 @@ const LegendaEstilo = require('./LegendaEstilo');
 
 Usuario.hasMany(Media, {
     foreignKey: 'usuario_id',
-    onDelete: 'CASCADE'
+    onDelete: 'CASCADE',
+    constraints: true
 });
 
 Media.belongsTo(Usuario, {
@@ -14,7 +15,8 @@ Media.belongsTo(Usuario, {
 
 Media.hasMany(Legenda, {
     foreignKey: 'media_id',
-    onDelete: 'CASCADE'
+    onDelete: 'CASCADE',
+    constraints: true
 });
 
 Legenda.belongsTo(Media, {
@@ -23,7 +25,8 @@ Legenda.belongsTo(Media, {
 
 Media.hasOne(LegendaEstilo, {
     foreignKey: 'media_id',
-    onDelete: 'CASCADE'
+    onDelete: 'CASCADE',
+    constraints: true
 })
 
 LegendaEstilo.belongsTo(Media, {

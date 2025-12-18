@@ -1,59 +1,54 @@
-const container = document.getElementById('playerContainer');
-const btnAdd = document.getElementById('btnAdd');
-const legendaInput = document.getElementById('legendaInput');
-const legendaDisplay = document.getElementById('legendaDisplay');
+(async () => {
+  const container = document.getElementById('playerContainer');
+  const btnAdd = document.getElementById('btnAdd');
+  const legendaInput = document.getElementById('legendaInput');
+  const legendaDisplay = document.getElementById('legendaDisplay');
 
-const params = new URLSearchParams(window.location.search);
-const file = params.get('file');
+  const params = new URLSearchParams(window.location.search);
+  const mediaId = params.get('mediaId');
 
-if (!file) {
+  if (!mediaId) {
     alert('Arquivo não encontrado');
     window.location.href = '/private/home.html';
-}
+    return;
+  }
 
-const ext = file.split('.').pop().toLowerCase();
+  const res = await fetch(`/medias/${mediaId}`);
+  const mediaData = await res.json();
 
-const src = `/uploads/${file}`;
+  const ext = mediaData.arquivo.split('.').pop().toLowerCase();
+  const src = `/uploads/${mediaData.arquivo}`;
 
-let media;
+  let media;
 
-if (['mp4','webm'].includes(ext)) {
-
-    container.innerHTML = `<video controls width="800"><source src="${src}">Seu navegador não suporta vídeo.</video>`;
-
+  if (['mp4','webm'].includes(ext)) {
+    container.innerHTML = `<video controls width="800"><source src="${src}"></video>`;
     media = container.querySelector('video');
-
-} else if (['mp3','wav','ogg'].includes(ext)) {
-
-    container.innerHTML = `<audio controls><source src="${src}">Seu navegador não suporte aúdio.</audio>`;
-
+  } else {
+    container.innerHTML = `<audio controls><source src="${src}"></audio>`;
     media = container.querySelector('audio');
+  }
 
-} else {
+  const legendas = [];
 
-    alert('Formato não suportado');
-    window.location.href = '/private/home.html';
-
-}
-
-const legendas = [];
-
-btnAdd.addEventListener('click', () => {
-    if(!legendaInput.value.trim()) return; 
+  btnAdd.addEventListener('click', () => {
+    if (!legendaInput.value.trim()) return;
 
     legendas.push({
-        texto: legendaInput.value,
-        tempo: media.currentTime
+      inicio: media.currentTime,
+      fim: media.currentTime + 2,
+      texto: legendaInput.value
     });
 
     legendaInput.value = '';
-    console.log(legendas);
-});
+  });
 
-media.addEventListener('timeupdate', () => {
-    const atual = legendas.find((l) =>
-        media.currentTime >= l.tempo && media.currentTime < l.tempo + 2
+  media.addEventListener('timeupdate', () => {
+    const atual = legendas.find(l =>
+      media.currentTime >= l.inicio &&
+      media.currentTime < l.fim
     );
 
     legendaDisplay.innerText = atual ? atual.texto : '';
-});
+  });
+})();

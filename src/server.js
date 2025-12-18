@@ -6,15 +6,17 @@ require('./models/index');
 const express = require('express');
 const session = require('express-session');
 const app = express();
+
 const usuariosRoutes = require('./routes/usuarios');
 const uploadsRoutes = require('./routes/uploads');
 const legendasRoutes = require('./routes/legendas');
+const mediasRoutes = require('./routes/medias');
 const usuariosControllers = require('./controllers/usuariosController');
+
 const path = require('path');
 const PORT = process.env.PORT || 3000;
 
 const sequelize = require('./config/database');
-
 sequelize.sync().then(() => {
     console.log('Banco sincronizado com sucesso');
 }).catch((err) => {
@@ -29,9 +31,12 @@ app.use(session({
 }));
 
 app.use(express.json());
+
 app.use(usuariosRoutes);
 app.use(uploadsRoutes);
 app.use(legendasRoutes);
+app.use(mediasRoutes);
+
 app.use('/uploads', express.static('uploads'));
 
 app.use(express.static(path.join(__dirname, '../public' )));

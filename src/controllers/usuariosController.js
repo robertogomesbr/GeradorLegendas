@@ -57,7 +57,7 @@ exports.login = async (req, res) => {
             return res.status(400).json({ erro: "Usuário ou senha inválida" });
         }
 
-        req.session.userId = usuarioExistente.id;
+        req.session.usuarioId = usuarioExistente.id;
 
         return res.status(200).json({
             msg: "Login realizado",
@@ -82,7 +82,7 @@ exports.logout = (req, res) => {
 };
 
 exports.auth = (req, res, next) => {
-    if (!req.session.userId) {
+    if (!req.session.usuarioId) {
         return res.send(`<script>
             alert("Você precisa estar logado!");
             window.location.href = "/index.html";

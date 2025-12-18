@@ -21,7 +21,10 @@ const Media = sequelize.define('Media', {
         allowNull: false
     }
 }, {
-    tableName: 'medias'
+    tableName: 'medias',
+    indexes: [
+        { fields: ['usuario_id'] }
+    ]
 });
 
 module.exports = Media;

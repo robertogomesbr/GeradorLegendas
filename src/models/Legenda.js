@@ -15,11 +15,14 @@ const Legenda = sequelize.define('Legenda', {
         allowNull: false
     },
     texto: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false
     }
 }, {
-    tableName: 'legendas'
+    tableName: 'legendas',
+    indexes: [
+        { fields: ['media_id'] }
+    ]
 });
 
 module.exports = Legenda;
