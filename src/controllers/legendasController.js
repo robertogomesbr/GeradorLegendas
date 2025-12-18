@@ -8,7 +8,7 @@ exports.store = async (req, res) => {
         return res.status(400).json({ erro: 'Dados incompletos' });
     };
 
-    const legenda = legenda.create({
+    const legenda = Legenda.create({
         media_id: mediaId,
         inicio,
         fim,
@@ -19,9 +19,9 @@ exports.store = async (req, res) => {
 };
 
 exports.index = async (req, res) => {
-    const { mediaId } = req.body;
+    const { mediaId } = req.params;
 
-    const legendas = await legenda.findAll({
+    const legendas = await Legenda.findAll({
         where: {media_id: mediaId},
         order: [['inicio', 'ASC']]
     });
@@ -33,7 +33,7 @@ exports.update = async (req, res) => {
     const { id } = req.params;
     const { inicio, fim, texto } = req.body;
 
-    const legenda = legenda.findByPk(id);
+    const legenda = await Legenda.findByPk(id);
 
     if (!legenda) {
         return res.status(404).json({ erro: 'Legenda não encontrada' });
@@ -46,7 +46,7 @@ exports.update = async (req, res) => {
 exports.destroy = async (req, res) => {
     const { id } = req.params;
 
-    const legenda = legenda.findByPk(id);
+    const legenda = await Legenda.findByPk(id);
 
     if (!legenda) {
         return res.status(404).json({ erro: 'Legenda não encontrada' });
