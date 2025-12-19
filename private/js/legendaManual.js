@@ -287,4 +287,18 @@
     btnCancelar.addEventListener('click', () => {
         location.href = `/private/modo.html?mediaId=${mediaId}`;
     });
+
+    const btnSalvarProjeto = document.getElementById('btn-salvar');
+
+    btnSalvarProjeto.addEventListener('click', async () => {
+        await fetch(`/legenda-estilo/${mediaId}`, {
+            credentials: 'include',
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(estiloLegenda)
+        });
+
+        location.href = `/private/exportar.html?mediaId=${mediaId}`;
+    });
+
 })();
