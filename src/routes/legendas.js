@@ -3,7 +3,6 @@ const router = express.Router();
 const path = require('path');
 const usuariosController = require('../controllers/usuariosController');
 const legendasController = require('../controllers/legendasController');
-const { route } = require('./usuarios');
 
 router.get('/legenda/manual', usuariosController.auth, (req, res) => {
 

@@ -19,15 +19,33 @@
             <a class="btn-side">Tamanho Da Fonte</a>
             <a class="btn-side">Cor De Fundo</a>
             <a class="btn-side">Transparência De Fundo</a>
-            <a href="/logout" class="btn-side cancelar">Cancelar</a>
-            <button class="btn-side salvar" title="Salvar alterações">Salvar</button>
+            <a id="btnCancelar" class="btn-side cancelar">Cancelar</a>
+            <button id="btn-salvar" class="btn-side salvar" title="Salvar alterações">Salvar</button>
         </div>
     </header>
 
     <main>
-        <div id="playerContainer"></div>
-        <div id="legendaDisplay"></div>
-        <input type="text" id="legendaInput" placeholder="Adicione a legenda">
+        <div class="player">
+            <div id="playerContainer"></div>
+            <div id="legendaDisplay"></div>
+        </div>
+        <div id="timelineContainer">
+            <div id="timeline"></div>
+        </div>
+
+        <div id="legendaModal" class="modal-legenda hidden">
+            <div class="modal-content">
+                <h3 id="modalTitulo">Nova legenda</h3>
+
+                <input type="text" id="legendaInput" placeholder="Digite a legenda">
+
+                <div class="modal-actions">
+                    <button id="btnCancelarLegenda">Cancelar</button>
+                    <button id="btnConfirmarLegenda">Salvar</button>
+                </div>
+            </div>
+        </div>
+
     </main>
     <script src="/private/js/legendaManual.js"></script>
 </body>

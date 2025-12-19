@@ -1,9 +1,13 @@
 const btn = document.getElementById("btnAvancar");
-const form = document.getElementById("form-modo");
 
 const params = new URLSearchParams(window.location.search);
-document.getElementById("mediaId").value = params.get("mediaId");
+const mediaId = params.get("mediaId");
 
 btn.addEventListener("click", () => {
-    form.submit();
+    if (!mediaId) {
+        alert("Mídia não encontrada");
+        return;
+    }
+
+    window.location.href = `/private/legenda/manual.html?mediaId=${mediaId}`;
 });
