@@ -92,7 +92,7 @@ exports.auth = (req, res, next) => {
 };
 
 exports.pegarDadosUsuario = async (req, res) => {
-    if (!req.session.userId) {
+    if (!req.session.usuarioId) {
         return res.send(`<script>
             alert("Você precisa estar logado!");
             window.location.href = "/index.html";
@@ -100,7 +100,7 @@ exports.pegarDadosUsuario = async (req, res) => {
     }
 
     try {
-        const usuario = await Usuario.findByPk(req.session.userId, {
+        const usuario = await Usuario.findByPk(req.session.usuarioId, {
             attributes: ['usuario', 'email']
         });
         res.json(usuario);
@@ -111,7 +111,7 @@ exports.pegarDadosUsuario = async (req, res) => {
 };
 
 exports.alterarDados = async (req, res) => {
-    if (!req.session.userId) {
+    if (!req.session.usuarioId) {
         return res.send(`<script>
             alert("Você precisa estar logado!");
             window.location.href = "/index.html";

@@ -10,6 +10,16 @@
     const btnConfirmar = document.getElementById('btnConfirmarLegenda');
     const btnCancelarModal = document.getElementById('btnCancelarLegenda');
 
+    const estiloModal = document.getElementById('estiloModal');
+    const estiloFonte = document.getElementById('estiloFonte');
+    const estiloTamanho = document.getElementById('estiloTamanho');
+    const estiloCorTexto = document.getElementById('estiloCorTexto');
+    const estiloCorFundo = document.getElementById('estiloCorFundo');
+    const estiloTransparencia = document.getElementById('estiloTransparencia');
+    const estiloPosicao = document.getElementById('estiloPosicao');
+
+    const btnCancelarEstilo = document.getElementById('btnCancelarEstilo');
+    const btnSalvarEstilo = document.getElementById('btnSalvarEstilo');
 
     const params = new URLSearchParams(window.location.search);
     const mediaId = params.get('mediaId');
@@ -42,7 +52,7 @@
         const res = await fetch(`/legendas/${mediaId}`);
         const data = await res.json();
 
-        legendas.length = 0; // limpa
+        legendas.length = 0;
         legendas.push(...data);
     }
 
@@ -141,6 +151,101 @@
         legendaSelecionada = null;
     });
 
+    let estiloLegenda = {
+        fonte: 'Arial',
+        tamanho: 24,
+        cor_texto: '#ffffff',
+        cor_fundo: '#000000',
+        transparencia: 0.75,
+        posicao_y: 'bottom'
+    };
+
+    function aplicarEstiloLegenda() {
+        const span = legendaDisplay.querySelector('span');
+        if (!span) return;
+
+        span.style.fontFamily = estiloLegenda.fonte;
+        span.style.fontSize = `${estiloLegenda.tamanho}px`;
+        span.style.color = estiloLegenda.cor_texto;
+
+        span.style.backgroundColor = estiloLegenda.cor_fundo;
+        span.style.opacity = estiloLegenda.transparencia;
+        span.style.padding = '6px 10px';
+        span.style.borderRadius = '6px';
+
+        legendaDisplay.style.top = '';
+        legendaDisplay.style.bottom = '';
+        legendaDisplay.style.transform = '';
+
+        if (estiloLegenda.posicao_y === 'top') {
+            legendaDisplay.style.top = '8%';
+        } else if (estiloLegenda.posicao_y === 'center') {
+            legendaDisplay.style.top = '50%';
+            legendaDisplay.style.transform = 'translateY(-50%)';
+        } else {
+            legendaDisplay.style.bottom = '8%';
+        }
+    }
+
+
+    document.querySelectorAll('.btn-side').forEach((btn, i) => {
+        if (i > 0 && i < 6) {
+            btn.addEventListener('click', () => {
+                abrirModalEstilo();
+            });
+        }
+    });
+
+
+    function abrirModalEstilo() {
+        estiloFonte.value = estiloLegenda.fonte;
+        estiloTamanho.value = estiloLegenda.tamanho;
+        estiloCorTexto.value = estiloLegenda.cor_texto;
+        estiloCorFundo.value = estiloLegenda.cor_fundo;
+        estiloTransparencia.value = estiloLegenda.transparencia;
+        estiloPosicao.value = estiloLegenda.posicao_y;
+
+        estiloModal.classList.remove('hidden');
+    }
+
+    [
+        estiloFonte,
+        estiloTamanho,
+        estiloCorTexto,
+        estiloCorFundo,
+        estiloTransparencia,
+        estiloPosicao
+    ].forEach(el => {
+        el.addEventListener('input', () => {
+            estiloLegenda = {
+                fonte: estiloFonte.value,
+                tamanho: Number(estiloTamanho.value),
+                cor_texto: estiloCorTexto.value,
+                cor_fundo: estiloCorFundo.value,
+                transparencia: Number(estiloTransparencia.value),
+                posicao_y: estiloPosicao.value
+            };
+            aplicarEstiloLegenda();
+        });
+    });
+
+
+    btnCancelarEstilo.addEventListener('click', () => {
+        estiloModal.classList.add('hidden');
+    });
+
+    btnSalvarEstilo.addEventListener('click', async () => {
+        estiloModal.classList.add('hidden');
+
+        await fetch(`/legenda-estilo/${mediaId}`, {
+            credentials: 'include',
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(estiloLegenda)
+        });
+    });
+
+
 
     media.addEventListener('timeupdate', () => {
         const atual = legendas.find(l =>
@@ -149,12 +254,34 @@
         );
 
         legendaDisplay.innerHTML = atual ? `<span>${atual.texto}</span>` : '';
+
+        aplicarEstiloLegenda();
     });
+
 
     media.addEventListener('loadedmetadata', async () => {
         await carregarLegendas();
+
+        const resEstilo = await fetch(`/legenda-estilo/${mediaId}`, {
+            credentials: 'include'
+        });
+        if (resEstilo.ok) {
+            const estiloDB = await resEstilo.json();
+            if (estiloDB) {
+                estiloLegenda = {
+                    fonte: estiloDB.fonte,
+                    tamanho: estiloDB.tamanho,
+                    cor_texto: estiloDB.cor_texto,
+                    cor_fundo: estiloDB.cor_fundo,
+                    transparencia: estiloDB.transparencia,
+                    posicao_y: estiloDB.posicao_y
+                };
+            }
+        }
+
         renderTimeline();
     });
+
 
     const btnCancelar = document.getElementById('btnCancelar');
     btnCancelar.addEventListener('click', () => {

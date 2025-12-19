@@ -5,7 +5,11 @@ const LegendaEstilo = sequelize.define('LegendaEstilo', {
     media_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        unique: true
+        unique: true,
+        references: {
+            model: 'medias',
+            key: 'id'
+        },
     },
     fonte: {
         type: DataTypes.STRING,

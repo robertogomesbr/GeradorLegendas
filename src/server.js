@@ -11,6 +11,7 @@ const usuariosRoutes = require('./routes/usuarios');
 const uploadsRoutes = require('./routes/uploads');
 const legendasRoutes = require('./routes/legendas');
 const mediasRoutes = require('./routes/medias');
+const legendasEstiloRoutes = require('./routes/legendasEstilo');
 const usuariosControllers = require('./controllers/usuariosController');
 
 const path = require('path');
@@ -36,6 +37,7 @@ app.use(usuariosRoutes);
 app.use(uploadsRoutes);
 app.use(legendasRoutes);
 app.use(mediasRoutes);
+app.use(legendasEstiloRoutes);
 
 app.use('/uploads', express.static('uploads'));
 
